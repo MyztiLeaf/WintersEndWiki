@@ -6,7 +6,7 @@
     padding: 16px;
     margin-bottom: 24px;
     margin-top: 25px;
-    width: 3    20px;
+    width: 320px;
     float: right;
     margin-left: 24px;
 }
@@ -124,7 +124,7 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    
+    display: flexbox;
 }
 
 .gallery-caption {
@@ -431,17 +431,19 @@ body::before {
     margin: 24px 0 0 0;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    max-width: 900px;
+    max-width: 1500px;
 }
 .spoiler-warning-header {
-        font-weight: bold;
-        color: #ff4444;
-        font-size: 1.2em;
+    font-weight: bold;
+    color: #ff4444;
+    font-size: 1.2em;
     margin-bottom: 8px;
+    text-align: center;
 }
 .spoiler-description {
     font-size: 1em;
     margin-bottom: 12px;
+    text-align: center;
 }
 .spoiler-toggle {
     background: #b00;
@@ -452,7 +454,13 @@ body::before {
     cursor: pointer;
     margin-bottom: 12px;
     font-weight: bold;
+    /* aligning this box to center. */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
 }
+
 .spoiler-content {
     margin-top: 12px;
     background: #1111114b;
