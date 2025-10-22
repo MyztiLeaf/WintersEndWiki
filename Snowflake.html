@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snowflake - Slugcat</title>
+    <link rel="stylesheet" href="style_slugcat.css">
+
+    <!-- Rain World Font -->
+    <style>
+        @font-face {
+            font-family: 'RainWorldFont';
+            src: url('fonts/rainworld.woff') format('woff');
+        }
+    </style>
+    <script>
+        function toggleContents() {
+            const list = document.getElementById('contentsList');
+            const button = document.querySelector('.contents-toggle');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                button.textContent = '▼';
+            } else {
+                list.style.display = 'none';
+                button.textContent = '▶';
+            }
+        }
+        function toggleSpoiler(button) {
+            const content = button.nextElementSibling;
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.textContent = '[HIDE]';
+            } else {
+                content.style.display = 'none';
+                button.textContent = '[SHOW]';
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: url('resource/longhall.png') no-repeat center center fixed;
+            background-size: cover;
+            scroll-behavior: smooth;
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slugcat-header">
+    <img src="icons/Snowflake.png" class="slugcat-icon">
+    <div class="slugcat-title">
+        <span class="slugcat-the">THE</span><br>
+        <span class="slugcat-name">SNOWFLAKE</span><br>
+        <span class="slugcat-id">ID: SnowflakeCat</span>
+    </div>
+</div>
+
+
+<hr class="divider">
+<!-- Game-style bars moved into header (below title) -->
+<div class="game-bars header-bars">
+    <div class="karma-overlay">
+        <img src="resource/karma_reinforced.png" alt="karma reinforcement" class="karma-bar">
+        <img src="resource/karma_5.png" alt="karma" class="karma-icon">
+    </div>
+    <div class="food-display header-food">              
+        <div class="food-pips" aria-label="Food pips">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            <img src="resource/food_bar.png" alt="food bar" class="food-bar">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        </div>
+    </div>
+</div>
+<div class="slugcat-main">
+    <div class="slugcat-details">
+    <div class="detail-row">
+        <span class="detail-label">NAME</span>
+        <span class="detail-value">Snowflake</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">ID CODE</span>
+        <span class="detail-value">SnowflakeCat</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Creator</span>
+        <span class="detail-value">Myztileaf</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Mod</span>
+        <span class="detail-value">Winter's End</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Food</span>
+        <span class="detail-value">
+            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+            5
+            <img src="resource/food_bar.png" alt="food bar" class="food-bar">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            5
+        </span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Starting Karma</span>
+        <span class="detail-value">
+            <img src="resource/karma_5.png" alt="karma" class="karma-icon">
+            <img src="resource/food_bar.png" alt="food bar" class="food-bar">
+            max
+            <img src="resource/karma_5.png" alt="karma" class="karma-icon">
+        </span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Residence</span>
+        <span class="detail-value">Blizzard's Embrace (Z3_SA01)</span>
+    </div>
+    
+    <!-- ...existing code for slugcat-main... -->
+    <h2 class="gallery-title">GALLERY</h2>
+    <div class="gallery-grid">
+        <figure class="gallery-item">
+            <img src="gallery/snowflake/art1.png" alt="Snowflake Art 1" class="gallery-img">
+            <figcaption class="gallery-caption">Snowflake Menu Art screen.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="gallery/snowflake/art2.png" alt="Snowflake Art 2" class="gallery-img">
+            <figcaption class="gallery-caption">Snowbee Menu Art Screen.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+            <img src="gallery/snowflake/art3.png" alt="Snowflake Art 3" class="gallery-img">
+            <figcaption class="gallery-caption">Snowflake sleep screen.</figcaption>
+        </figure>
+    </div>
+</div>
+
+
+<div class="slugcat-info">
+    <p class="description">
+        Fragile in the embrace of its icy power, navigates the brutal blizzards with a remarkable resilience. 
+        Its unique survival skills keep it thriving amidst the unforgiving snowscape.
+    </p>
+    
+    <div class="contents-box">
+        <div class="contents-header">
+            <h3>Contents</h3>
+            <button class="contents-toggle" onclick="toggleContents()" aria-label="Toggle contents visibility">▼</button>
+        </div>
+        <div class="contents-list" id="contentsList">
+            <ol>
+                <li><a href="#food">Food</a></li>
+                <li><a href="#general-changes">General Changes</a></li>
+                <li><a href="#world-changes">World Changes</a></li>
+                <li><a href="#abilities">Abilities & Attributes</a>
+                    <ol class="sub-list">
+                        <li><a href="#back-spear">Back Spear</a></li>
+                        <li><a href="#double-jump">Double Jump</a></li>
+                        <li><a href="#slide-pounce">Slide Pounce Attack</a></li>
+                        <li><a href="#SnowPuffs">SnowPuffs</a></li>
+                        <li><a href="#warmth">Warmth</a></li>
+                        <li><a href="#stats">Stats</a></li>
+                    </ol>
+                </li>
+                <li><a href="#story">Story</a>
+                    <ol class="sub-list">
+                        <li><a href="#SF-Campaign">Campaign</a></li>
+                        <li><a href="#SF-Ending">Ending</a></li>
+                    </ol>
+                </li>
+                <li><a href="#Tips">Tips</a></li>
+                <li><a href="#trivia">Trivia</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="stats">
+        <h1 id="food">Food</h1>
+        <hr class="divider">
+        <p>5 food pips are required to hibernate, while up to 5 may be stored for the next cycle.</p>
+        <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+        <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+        <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+        <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+        <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
+        <img src="resource/food_bar.png" alt="food bar" class="food-bar">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <p>The Snowflake inherits 
+            <a href="https://rainworld.miraheze.org/wiki/Hunter" target="_blank" class="hunter-link">
+                <img src="resource/Hunter_icon.png" alt="Hunter icon" class="hunter-icon">
+                <span class="hunter-text">Hunter</span>
+            </a>'s diet with some further changes:</p>
+        <ul class="food-list">
+            <li>Corpses give 1.25 their normal amount of food</li>
+            <li>Plants give 2 times their normal amount of food</li>
+            <li><a href="https://rainworld.miraheze.org/wiki/Blue_Fruit" target="_blank" class="Blueberry-link">
+                <img src="resource/Blue_Fruit_icon.png" alt="Blue Fruit icon" style="height:20px;vertical-align:middle;margin-right:4px;">
+                <span style="color:#3399ff;text-decoration:underline;">Blue Fruit</span>
+            </a>Blue Fruit and Snow Berry and its derivatives give 3.5 food pips</li>
+            <li>Centipedes give 2.25 times their normal amount of food</li>
+        </ul>
+        <h1 id="general-changes">General Changes</h1>
+        <hr class="divider">
+        <ul class="DotPoint">
+            <li>Snowflake is followed by a white/gray overseer</li>
+            <li>Snowflake can create Ice Spears at the cost of one food pip</li>
+            <li>Snowflake holds items in the middle of their body like a Slugpup Slugpup. This is intentional.</li>
+        </ul>
+        <h1 id="world-changes">World Changes</h1>
+        <hr class="divider">
+        <p>Snowflake's campaign takes place entirely within regions disconnected from the base game.</p>
+        <ul class="DotPoint">
+            <li>This means that normal regions and iterators, such as Five Pebbles (region) Five Pebbles and Looks to the Moon (region) Looks to the Moon are completely inaccessible by Snowflake without cheats.</li>
+        </ul>
+        <p>The world is cold enough that <a href="https://rainworld.miraheze.org/wiki/Rain#Blizzard" target="_blank" class="Survivor-link">
+            <span style="color:#3399ff;text-decoration:underline;">Blizzard</span>
+            </a> rampage, though Snowflake does not lose warmth as fast as Saint Saint and can warm themselves up on their own.</p>
+        <ul class="DotPoint">
+            <li>The rain timer cannot be seen as a result.</li>
+        </ul>
+        <h1 id="abilities">Abilities & Attributes</h1>
+        <hr class="divider">
+        <h3 id="back-spear" class="ability-title">Back Spear</h3>
+        <p>
+            <a href="https://rainworld.miraheze.org/wiki/Hunter" target="_blank" class="hunter-link">
+                <img src="resource/Hunter_icon.png" alt="Hunter icon" style="height:20px;vertical-align:middle;margin-right:4px;">
+                <span style="color:#3399ff;text-decoration:underline;">Hunter</span>
+            </a>, Snowflake can store spears on their back by holding grab.
+        </p>
+        <h3 id="double-jump" class="ability-title">Double Jump</h3>
+        <p>By holding grab and jump while in the air, Snowflake can perform a prolongued double jump that varies in height depending on the player's hypothermia. This double jump has a short cooldown afterwards.</p>
+        <div class="ability-media-box">
+            <img src="gallery/snowflake/Snowflake_Double_Jump.gif" alt="NightWalker Ability GIF" class="ability-gif">
+            <div class="ability-context-text">
+                Snowflake's double jump ability
+            </div>
+        </div>
+
+        
+
+        <h3 id="slide-pounce" class="ability-title">Slide Pounce Attack</h3>
+        <p>By slide pouncing, Snowflake can attack Lizards Lizards (specifically lizards, though) on long slide.</p>
+        <div class="ability1-media-box">
+            <img src="gallery/snowflake/SnowPounce.gif" alt="NightWalker Ability GIF" class="ability1-gif">
+            <div class="ability1-context-text">
+                Snowflake's Belly slides
+            </div>
+        </div>
+
+        <h3 id="SnowPuffs" class="ability-title">SnowPuffs</h3>
+        <p>By holding down and grab, after pressing jump, Snowflake can release Snowpuffs, it puffs out into snow clouds, that obscure Creature vision. Will fade away within 10 seconds.</p>
+        <div class="ability2-media-box">
+            <img src="gallery/snowflake/SnowPuffs.gif" alt="SnowPuffs Ability GIF" class="ability2-gif">
+            <div class="ability2-context-text">
+                Snowflake's releasing SnowPuffs clouds
+            </div>
+        </div>
+
+        <h3 id="warmth" class="ability-title">Warmth</h3>
+        <p>Snowflake can heal themselves of hypothermia by holding down for a while. This causes them to curl up and begin sleeping and slowly brings back their warmth.</p>
+        <h3 id="stats" class="ability-title">Stats</h3>
+        <ul class="DotPoint">
+            <li>Snowflake uses Survivor <a href="https://rainworld.miraheze.org/wiki/Survivor" target="_blank" class="Survivor-link">
+                <img src="icons/Survivor_icon.png" alt="Blue Fruit icon" style="height:20px;vertical-align:middle;margin-right:4px;">
+                <span style="color:#3399ff;text-decoration:underline;">Survivor's</span>
+            </a>stats, except that pole climbing is slightly faster (1 instead of 0.85).</li>
+            <li>Additionally, Snowflake has a speed boost when crawling on all fours and not in a corridor.</li>
+        </ul>
+
+        <h1 id="Story">Story</h1>
+        <hr class="divider">
+        <div class="spoiler-box">
+            <div class="spoiler-warning-header">SPOILER WARNING</div>
+            <div class="spoiler-description">This section contains major story spoilers for Snowflake. Proceed with caution!</div>
+            <button class="spoiler-toggle" onclick="toggleSpoiler(this)">[SHOW]</button>
+            <div class="spoiler-content" style="display:none;">
+                <h3 id="SF-Campaign" class="ability-title">Campaign</h3>
+                <p>Snowflake begins their journey in Blizzard's Embrace and eventually makes their way to the iterator Cryobloom Mist Cryobloom Mist, who is suffering power malfunctions from the cold. Cryobloom Mist gives Snowflake the Mark and max karma as well as a custom drone and tells them to restore power to the facility.</p>
+                <h3 id="SF-Ending" class="ability-title">Ending</h3>
+                <p>Upon restoring power to Cryobloom Mist, Snowflake makes their way back to Cryobloom Mist. If the player holds down while in the chamber, the ending plays.</p>
+            </div>
+        </div>
+
+        <h1 id="Tips">Tips</h1>
+        <hr class="divider">
+        <p>After using Double jump, Using a Ice Spear Resets the Double jump and can use in mid air.</p>
+
+        <h1 id="trivia">Trivia</h1>
+        <hr class="divider">
+        <p>If standing near Beecat Beecat / NightWalker (using Jolly Coop or other means), Snowflake will purr and wag their tail</p>
+        <ul class="DotPoint">
+        <li>This is a reference to the creator's real life relationship with the original creator of NightWalker, BensoneWhite</li>
+        <li>The select screen art and Cryobloom Mist Cryobloom dialogue also change because of this</li>
+    </div>
+</div>
+<style>
+.ability-media-box {
+    border: 2px solid #3399ff;
+    background: rgba(20, 20, 40, 0.7);
+    color: #fff;
+    padding: 12px;
+    margin: 18px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    max-width: 200px;
+    text-align: center;
+}
+.ability-gif {
+    width: 200px;
+    height: 200px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    object-fit: contain;
+    background: #22222200;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ability-context-text {
+    font-size: 0.98em;
+    color: #e0eaff;
+    margin-top: 4px;
+    text-align: left;
+}
+
+.ability1-media-box {
+    border: 2px solid #3399ff;
+    background: rgba(20, 20, 40, 0.7);
+    color: #fff;
+    padding: 12px;
+    margin: 18px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    max-width: 200px;
+    text-align: center;
+}
+.ability1-gif {
+    width: 200px;
+    height: 50px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    object-fit: contain;
+    background: #22222200;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ability1-context-text {
+    font-size: 0.98em;
+    color: #e0eaff;
+    margin-top: 4px;
+    text-align: left;
+}
+.ability2-media-box {
+    border: 2px solid #3399ff;
+    background: rgba(20, 20, 40, 0.7);
+    color: #fff;
+    padding: 12px;
+    margin: 18px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    max-width: 200px;
+    text-align: center;
+}
+.ability2-gif {
+    width: 200px;
+    height: 200px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    object-fit: contain;
+    background: #22222200;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ability2-context-text {
+    font-size: 0.98em;
+    color: #e0eaff;
+    margin-top: 4px;
+    text-align: left;
+}
+</style>
+</body>
+</html>
