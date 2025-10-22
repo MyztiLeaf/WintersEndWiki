@@ -454,7 +454,6 @@ body::before {
     cursor: pointer;
     margin-bottom: 12px;
     font-weight: bold;
-    /* aligning this box to center. */
     display: block;
     margin-left: auto;
     margin-right: auto;
