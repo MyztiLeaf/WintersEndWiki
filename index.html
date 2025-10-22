@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rain World Wiki Hub</title>
+        <link rel="stylesheet" href="style.css">
+
+        <!-- Import Rain World Font -->
+        <style>
+            @font-face {
+                font-family: 'RainWorldFont';
+                src: url('fonts/rainworld.woff') format('woff');
+            }
+        </style>
+    </head>
+        <body>
+            <div class="vignette"></div>
+
+            <header>
+                <h1 class="title">Cold Storage Wiki</h1>
+            </header>
+
+        <div class="category">
+            <div class="cat-btn">Slugcats</div>
+            <div class="dropdown open">
+                <a href="#">
+                    <img src="icons/survivor_icon.png" class="icon"> Survivor
+                </a>
+                <a href="#">
+                    <img src="icons/monk_icon.png" class="icon"> Monk
+                </a>
+                <a href="#">
+                    <img src="icons/hunter_icon.png" class="icon"> Hunter
+                </a>
+                <a href="#">
+                    <img src="icons/gourmand_icon.png" class="icon"> Gourmand
+                </a>
+            </div>
+        </div>
+
+
+         <div class="category">
+            <div class="cat-btn">Creature</div>
+            <div class="dropdown open">
+                <a href="#">
+                    <img src="icons/Frost_Lizard_icon.png" class="icon"> Frost Lizard
+                </a>
+                <a href="#">
+                    <img src="icons/WE_Blizzard_Lizard_icon.png" class="icon"> Blizzard Lizard
+                </a>
+            </div>
+        </div>
+    </body>
+    <script>
+        document.querySelectorAll('.cat-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const dropdown = button.nextElementSibling;
+                dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+            });
+        });
+    </script>
+
+</html>
