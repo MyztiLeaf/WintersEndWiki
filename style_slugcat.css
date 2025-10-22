@@ -1,0 +1,479 @@
+/* Contents Box Styles */
+.contents-box {
+    background: rgba(20, 20, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    padding: 16px;
+    margin-bottom: 24px;
+    margin-top: 25px;
+    width: 3    20px;
+    float: right;
+    margin-left: 24px;
+}
+
+.contents-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.contents-header h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.contents-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0;
+}
+
+.contents-list {
+    display: block;
+}
+
+.contents-list ol {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.contents-list li {
+    margin: 8px 0;
+}
+
+.contents-list a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contents-list a:hover {
+    color: #888;
+    text-decoration: underline;
+}
+
+.contents-list .sub-list {
+    margin: 4px 0 8px 1px;
+    list-style-type: none;
+    counter-reset: subsection;
+}
+
+.contents-list .sub-list li {
+    margin: 1px 0;
+    font-size: 0.95em;
+}
+
+.contents-list .sub-list li::before {
+    counter-increment: subsection;
+    content: "4." counter(subsection) " ";
+    color: #888;
+}
+
+.ability-title {
+    color: #ffffff;
+    font-size: 1em;
+    margin: 20px 0 10px 0;
+    font-weight: bold;
+}
+
+/* Page background with blended PNG */
+body {
+    margin: 40px;
+    font-family: 'RainWorldFont', sans-serif;
+    color: white;
+    /*letter-spacing: 2px;
+    /* Base dark color */
+    background-color: #0e0e0f;
+
+/* Gallery styles */
+.gallery-title {
+    margin: 32px 0 16px 0;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: #e0eaff;
+    text-align: left;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.gallery-img {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1/1;
+    object-fit:contain;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    background: #22222200;
+    margin: 0 auto;
+    display: block;
+    outline: rgba(43, 43, 43, 0.253);
+    outline-color: rgba(43, 43, 43, 0.253);
+    outline-style:auto;
+    
+}
+
+.gallery-item {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    
+}
+
+.gallery-caption {
+    margin-top: 12px;
+    color: #cccccc;
+    font-size: 0.95em;
+    line-height: 1.4;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hunter link and icon styles for food section */
+.hunter-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.hunter-icon {
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+    margin-right: 2px;
+    image-rendering: pixelated;
+}
+.hunter-text {
+    color: #3399ff;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 1em;
+}
+.food-list {
+    margin: 10px 0 18px 24px;
+    padding: 0;
+    list-style-type: disc;
+}
+.food-list li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+}
+
+/* Optional: dark overlay to smooth-blend image edges */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(0,0,0,0) 1%, rgba(0,0,0,0.8) 100%);
+    z-index: -1;
+}
+
+.slugcat-id {
+    font-size: 0.9rem;
+    color: #8a8a8a;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+
+/* Slugcat top section */
+.slugcat-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.slugcat-icon {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    outline: rgba(43, 43, 43, 0.253);
+    outline-color: rgba(43, 43, 43, 0.253);
+    outline-style:auto;
+}
+
+.slugcat-title {
+    line-height: 1;
+}
+
+/* Header bars (karma + food) placed under the title */
+.slugcat-title .header-bars {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.karma-overlay {
+    position: relative;
+    width: 64px; /* reserve space for bar + icon */
+    height: 30px;
+}
+.karma-overlay .karma-bar {
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+.karma-overlay .karma-icon {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    height: 50px;
+    z-index: 2;
+}
+
+.header-food { display:flex; align-items:center; gap:8px; }
+.header-food .food-bar { height: 28px; }
+.header-food .food-pips .pip { height: 28px; }
+
+/* Ensure header placement keeps karma and food on a single row */
+.game-bars.header-bars {
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.slugcat-the {
+    font-size: 1.2rem;
+    color: #888; /* Grey color like “THE” */
+    letter-spacing: 3px;
+}
+
+.slugcat-name {
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    letter-spacing: 4px;
+}
+
+/* Divider line */
+.divider {
+    margin: 8px 0 16px 0;
+    border: none;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+}
+
+/* Section headings style */
+.slugcat-info h1 {
+    font-size: 2.2em;
+    margin: 16px 0 4px 0;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    font-family: 'RainWorldFont'
+}
+
+/* Make ability titles closer to their content */
+.ability-title {
+    font-size: 1.4em;
+    margin: 12px 0 8px 0;
+    color: #e0eaff;
+    letter-spacing: 1px;
+}
+
+/* Description and stats */
+.slugcat-main {
+    display: flex;
+    gap: 64px; /* increased space between details and info */
+    align-items: flex-start;
+}
+
+/* make panels take sensible space and avoid overlap */
+.slugcat-info {
+    flex: 1 1 520px; /* fluid second column */
+    max-width: 1920px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    outline: white;
+    outline-color: white;
+    outline-style:auto;
+    outline-offset: 5px;
+
+    margin-top: 25px;
+}
+
+.description {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #dcdcdc;
+    font-family: Georgia, serif;
+    letter-spacing: 1px;
+    font-style: italic;
+    line-height: 1.5;
+    quotes: """ """;
+}
+
+.description::before {
+    content: open-quote;
+    font-size: 1.4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.1em;
+    color: #3399ff;
+}
+
+.description::after {
+    content: close-quote;
+    font-size: 1.4em;
+    line-height: 0.1em;
+    margin-left: 0.25em;
+    vertical-align: -0.1em;
+    color: #3399ff;
+}
+.stats strong {
+    color: #ffffff;
+}
+
+.slugcat-info {
+    padding: 18px 20px;
+    background: rgba(0, 0, 0, 0.253);
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.slugcat-info .stats p {
+    margin: 5px 0; /* space between stat lines */
+}
+
+/* Game-style karma and food bars */
+.game-bars {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.game-bars .bar-label {
+    display: inline-block;
+    width: 88px;
+    color: #dcdcdc;
+}
+
+.karma-row, .food-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.karma-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.karma-icon { height: 28px; image-rendering: pixelated; }
+.karma-bar { height: 14px; image-rendering: pixelated; }
+
+.food-display { display: flex; align-items: center; gap: 8px; }
+.food-bar { height: 18px; image-rendering: pixelated; }
+
+.food-pips { display: flex; gap: 6px; align-items: center; }
+.food-pips .pip { height: 20px; image-rendering: pixelated; }
+.food-pips .pip.empty { opacity: 0.4; }
+
+/* Wrapper positioned slightly to the right */
+.slugcat-details {
+    margin-top: 20px;
+    /* removed large left margin so it can sit beside .slugcat-info */
+    max-width: 360px;
+    font-family: 'RainWorldFont', sans-serif;
+    /* give the details panel some breathing room */
+    padding: 15px 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    flex: 0 0 340px; /* fixed-ish column */
+}
+
+/* Each row of info */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0; /* more vertical space between rows */
+    border-bottom: 1px solid rgba(255,255,255,0.08); /* smooth line */
+}
+
+/* Left side label (NAME, Diet, etc) */
+.detail-label {
+    color: #9a9a9a;      /* gray tone */
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+/* Right side value */
+.detail-value {
+    color: #ffffff;
+    font-size: 1rem;
+    text-shadow: 0 0 6px rgba(255,255,255,0.4);
+}
+
+.spoiler-box {
+    border: 2px solid #b00;
+    background: rgba(34, 34, 34, 0.486);
+    color: #fff;
+    padding: 16px;
+    margin: 24px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    max-width: 900px;
+}
+.spoiler-warning-header {
+        font-weight: bold;
+        color: #ff4444;
+        font-size: 1.2em;
+    margin-bottom: 8px;
+}
+.spoiler-description {
+    font-size: 1em;
+    margin-bottom: 12px;
+}
+.spoiler-toggle {
+    background: #b00;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+.spoiler-content {
+    margin-top: 12px;
+    background: #1111114b;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+}
+
+
+
+/* Responsive: stack details and info on small screens */
+@media (max-width: 800px) {
+    .slugcat-main {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .slugcat-details {
+        margin-left: 0;
+        max-width: 100%;
+    }
+    .slugcat-info {
+        max-width: 100%;
+    }
+}
