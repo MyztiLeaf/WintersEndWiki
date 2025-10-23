@@ -60,6 +60,9 @@ body {
 .category {
     width: 280px;
     margin: 15px auto;
+    margin-left: auto;
+    margin-right: auto;
+    /* putting all category staying in middle.*/
 }
 
 .cat-btn {
