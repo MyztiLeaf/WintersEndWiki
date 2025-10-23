@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NightFlake - Slugcat</title>
+    <title>Snowflake - Slugcat</title>
     <link rel="stylesheet" href="style_slugcat.css">
 
     <!-- Rain World Font -->
@@ -37,7 +37,7 @@
     </script>
     <style>
         body {
-            background: url('resource/NightHall.png') no-repeat center center fixed;
+            background: url('resource/BeeHall.png') no-repeat center center fixed;
             background-size: cover;
             scroll-behavior: smooth;
             background-size:cover;
@@ -49,11 +49,11 @@
 <body>
 
 <div class="slugcat-header">
-    <img src="icons/Nightwalker.png" class="slugcat-icon">
+    <img src="icons/Beecat.png" class="slugcat-icon">
     <div class="slugcat-title">
         <span class="slugcat-the">THE</span><br>
-        <span class="slugcat-name">NIGHTWALKER</span><br>
-        <span class="slugcat-id">ID: NightWalker</span>
+        <span class="slugcat-name">Beecat</span><br>
+        <span class="slugcat-id">ID: bee</span>
     </div>
 </div>
 
@@ -62,6 +62,7 @@
 <!-- Game-style bars moved into header (below title) -->
 <div class="game-bars header-bars">
     <div class="karma-overlay">
+        <img src="resource/karma_bg.png" alt="karma" class="karma-icon">
         <img src="resource/karma_reinforced.png" alt="karma reinforcement" class="karma-bar">
         <img src="resource/karma_5.png" alt="karma" class="karma-icon">
     </div>
@@ -72,8 +73,10 @@
             <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
             <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
             <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
-            <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
             <img src="resource/food_bar.png" alt="food bar" class="food-bar">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+            <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
             <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
             <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
             <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
@@ -81,31 +84,31 @@
     </div>
 </div>
 <div class="slugcat-main">
-        <div class="slugcat-details">
+    <div class="slugcat-details">
         <div class="detail-row">
             <span class="detail-label">NAME</span>
-            <span class="detail-value">NightWalker <img src="icons/Nightwalker-icon.png" alt="karma" class="Slug-Icon"></span>
+            <span class="detail-value">Beecat <img src="icons/Beecat_icon.png" alt="karma" class="Slug-Icon"></span>
         </div>
         <div class="detail-row">
             <span class="detail-label">ID CODE</span>
-            <span class="detail-value">NightWalker</span>
+            <span class="detail-value">bee</span>
         </div>
         <div class="detail-row">
             <span class="detail-label">Creator</span>
-            <span class="detail-value">BensoneWhite</span>
+            <span class="detail-value">Vigaro, Myztileaf Fleur, Frithuritaks</span>
         </div>
         <div class="detail-row">
             <span class="detail-label">Mod</span>
-            <span class="detail-value">NightWalker mod</span>
+            <span class="detail-value">Beecat Mod</span>
         </div>
         <div class="detail-row">
             <span class="detail-label">Food</span>
             <span class="detail-value">
                 <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
-                6
+                1
                 <img src="resource/food_bar.png" alt="food bar" class="food-bar">
                 <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
-                9
+                1
             </span>
         </div>
         <div class="detail-row">
@@ -119,26 +122,30 @@
         </div>
         <div class="detail-row">
             <span class="detail-label">Residence</span>
-            <span class="detail-value">Pale Ascent (VMPY_SA01)</span>
+            <span class="detail-value">PLACEHOLDER</span>
         </div>
-
         <!-- ...existing code for slugcat-main... -->
         <h2 class="gallery-title">GALLERY</h2>
         <div class="gallery-grid">
             <figure class="gallery-item">
-                <img src="gallery/nightwalker/art1.png" alt="NightWalker Art 1" class="gallery-img">
-                <figcaption class="gallery-caption">NightWalker Menu Art screen.</figcaption>
+                <img src="gallery/bee/Flat.png" alt="Beecat Art 1" class="gallery-img">
+                <figcaption class="gallery-caption">Beecat Menu Art screen.</figcaption>
+            </figure>
+            <figure class="gallery-item">
+                <img src="gallery/bee/beecat_sleep_flat.png" alt="Beecat Art 2" class="gallery-img">
+                <figcaption class="gallery-caption">Beecat Sleep Art screen.</figcaption>
             </figure>
         </div>
     </div>
 
 
 <div class="slugcat-info">
+    <div class="HeadsUp">
+        <p class="HeadsUp-text">This page is a WORK IN PROGRESS, As non winter's end version, check <a href="https://rainworldmods.miraheze.org/wiki/Beecat" target="_blank" class="Blueberry-link">https://rainworldmods.miraheze.org/wiki/Beecat</a>!</p>
+    </div>
     <p class="description">
-        A powerful slugcat that consumes the vitality of its enemies, its journey is solitary and confusing. 
-        Will you be able to find your way back or perhaps you will meet your ultimate death after so long?
+        A regular bee?
     </p>
-
     <div class="contents-box">
         <div class="contents-header">
             <h3>Contents</h3>
@@ -151,26 +158,25 @@
                 <li><a href="#world-changes">World Changes</a></li>
                 <li><a href="#abilities">Abilities & Attributes</a>
                     <ol class="sub-list">
-                        <li><a href="#revive-abilities">Revive Abilities</a></li>
-                        <li><a href="#void-slam">Void Slam</a></li>
-                        <li><a href="#void-dash">Void Dash</a></li>
-                        <li><a href="#walljump">Walljump</a></li>
-                        <li><a href="#void-hop">WallHop</a></li>
-                        <li><a href="#void-transformation">Void Transformation</a></li>
-                        <li><a href="#stats">Stats</a></li>
+                        <li><a href="#back-spear">PLACEHOLDER</a></li>
                     </ol>
                 </li>
-                <li><a href="#Story">Story</a></li>
+                <li><a href="#story">Story</a>
+                    <ol class="sub-list">
+                        <li><a href="#SF-Campaign">PLACEHOLDER</a></li>
+                    </ol>
+                </li>
                 <li><a href="#Tips">Tips</a></li>
                 <li><a href="#trivia">Trivia</a></li>
             </ol>
         </div>
     </div>
-    
     <div class="stats">
+
         <h1 id="food">Food</h1>
         <hr class="divider">
-        <p>6 food pips are required to hibernate, while up to 9 may be stored for the next cycle.</p>
+
+        <p>6 food pips are required to hibernate, while up to 11 may be stored for the next cycle.</p>
         <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
         <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
         <img src="resource/food_pip.png" alt="Filled pip" class="pip filled">
@@ -181,76 +187,30 @@
         <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
         <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
         <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
-        <p>Each Creature NightWalker drinks from them gives different pips count.</p>
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">
+        <p>Beecat may consume all sources of food. However, all food sources only give half the food they normally do..</p>
+        <p>As Beecat gains more food pips, their tail gets noticeably plumper.</p>
+
         <h1 id="general-changes">General Changes</h1>
         <hr class="divider">
-        <ul class="DotPoint">
-            <li>NightWalker Has no overseer to track</li>
-            <li>NightWalker begins the game with neuron glow and the Mark of Communication.</li>
-            <li>NightWalker has Blood Bar based on biting creatures.</li>
-        </ul>
         <h1 id="world-changes">World Changes</h1>
         <hr class="divider">
-        <ul class="DotPoint">
-            <li>NightWalker's campaign takes place in Pale Ascent region connection.</li>
-        </ul>
+
         <h1 id="abilities">Abilities & Attributes</h1>
         <hr class="divider">
-        <h3 id="revive-abilities" class="ability-title">Revive Abilities</h3>
-        <p>Nightwalker is able to revive other slugcats once, but if they die again they cannot be revived anymore.</p>
-        <h3 id="void-slam" class="ability-title">Void Slam</h3>
-        <p>By holding down and pressing jump, Nightwalker turns into void and performs a void slam, slamming into the ground and causing three spikes to erupt around it</p>
-        <h3 id="void-dash" class="ability-title">Void Dash</h3>
-        <p>By holding grab and either left or right and pressing jump, NightWalker performs a dash, dealing damage to [any creature/anything/everything] it passes through.</p>
-        <h3 id="walljump" class="ability-title">WallJump</h3>
-        <p>NightWalker can WallJump indefinetly in any sides wall.</p>
-        <div class="ability1-media-box">
-            <img src="gallery/nightwalker/walljump.gif" alt="SnowPuffs Ability GIF" class="ability1-gif">
-            <div class="ability1-context-text">
-                Nightwalker Walljump
-            </div>
-        </div>
-        <h3 id="void-hop" class="ability-title">WallHop</h3>
-        <p>Nightwalker can WallHop after walljump will hop in mid air.</p>
-        <div class="ability-media-box">
-            <img src="gallery/nightwalker/WallHop.gif" alt="SnowPuffs Ability GIF" class="ability-gif">
-            <div class="ability-context-text">
-                Nightwalker doing wallhop
-            </div>
-        </div>
-        <h3 id="void-transformation" class="ability-title">Void Transformation</h3>
-        <p>By performing [SPECIAL] If BloodBar is full, NightWalker can transform. Causing the rooms darkens. Able to stay longer away from sunlight.</p>
-        <div class="ability-media-box">
-            <img src="gallery/nightwalker/Transformation.gif" alt="SnowPuffs Ability GIF" class="ability-gif">
-            <div class="ability-context-text">
-                Nightwalker transformation, stunned during recording lol
-            </div>
-        </div>
-        <h3 id="stats" class="ability-title">Stats</h3>
-        <ul class="DotPoint">
-            <li>NightWalker uses Survivor <a href="https://rainworld.miraheze.org/wiki/Survivor" target="_blank" class="Survivor-link">
-                <img src="icons/Survivor_icon.png" alt="Blue Fruit icon" style="height:20px;vertical-align:middle;margin-right:4px;">
-                <span style="color:#3399ff;text-decoration:underline;">Survivor's</span>
-            </a>stats, except that pole climbing is slightly faster (1.2 instead of 0.85), and tunnel speed is slightly faster (1.2 instead of IDK) </li>
-        </ul>
 
         <h1 id="Story">Story</h1>
         <hr class="divider">
-        <p>[Coming Soon.]</p>
+
         <h1 id="Tips">Tips</h1>
         <hr class="divider">
-        <p>[Coming Soon]</p>
+
+
         <h1 id="trivia">Trivia</h1>
         <hr class="divider">
-        <p>This mod is seperated away from Nyctophobia mod for NightWalker Slugcat. And then Fully connected to Winter's End Mod</p>
-        <p>If standing near Snowflake (using Jolly Coop or other means), Snowflake will purr and wag their tail</p>
-        <ul class="DotPoint">
-            <li>This is a reference to the creator's real life relationship with the original creator of Snowflake, MyztiLeaf</li>
-            <li>The select screen art and Cryobloom Mist Cryobloom dialogue also change because of this</li>
-        </ul>
     </div>
 </div>
-
 <style>
 .ability-media-box {
     border: 2px solid #3399ff;
@@ -276,35 +236,6 @@
     margin-right: auto;
 }
 .ability-context-text {
-    font-size: 0.98em;
-    color: #e0eaff;
-    margin-top: 4px;
-    text-align: left;
-}
-.ability1-media-box {
-    border: 2px solid #3399ff;
-    background: rgba(20, 20, 40, 0.7);
-    color: #fff;
-    padding: 12px;
-    margin: 18px 0 0 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-    max-width: 150px;
-    text-align: center;
-}
-.ability1-gif {
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-    object-fit: contain;
-    background: #22222200;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.ability1-context-text {
     font-size: 0.98em;
     color: #e0eaff;
     margin-top: 4px;

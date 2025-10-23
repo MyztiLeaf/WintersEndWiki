@@ -289,11 +289,28 @@ body::before {
     letter-spacing: 1px;
 }
 
+.HeadsUp {
+    background-color: #444444cc;
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+}
+
 /* Description and stats */
 .slugcat-main {
     display: flex;
     gap: 64px; /* increased space between details and info */
     align-items: flex-start;
+}
+
+
+.Slug-Icon {
+    height: 20px;
+    width: 20px; 
+    margin-top: auto;
+    margin-bottom: auto;
+    image-rendering: pixelated;
 }
 
 /* make panels take sensible space and avoid overlap */
@@ -404,7 +421,7 @@ body::before {
 .detail-row {
     display: flex;
     justify-content: space-between;
-    padding: 7px 0; /* more vertical space between rows */
+    padding: 15px 0; /* more vertical space between rows */
     border-bottom: 1px solid rgba(255,255,255,0.08); /* smooth line */
 }
 
@@ -420,6 +437,10 @@ body::before {
     color: #ffffff;
     font-size: 1rem;
     text-shadow: 0 0 6px rgba(255,255,255,0.4);
+    text-align: end;
+    /*putting text in middle*/
+    display: flex;
+    align-items: center;
 }
 
 .spoiler-box {
