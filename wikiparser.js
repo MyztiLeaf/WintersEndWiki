@@ -18,32 +18,111 @@ class WikiParser {
     render() {
         const data = this.parseStructure(this.content);
 
+        // If a Header-regions template somehow ended up inside mainContent, extract it
+        if ((!data.header || !data.headerName) && data.mainContent && data.mainContent.includes('{{Header-regions')) {
+            const text = data.mainContent;
+            const start = text.indexOf('{{Header-regions');
+            if (start !== -1) {
+                // Find the balanced end of this template
+                let braceDepth = 0;
+                let endIndex = -1;
+                for (let i = start; i < text.length - 1; i++) {
+                    if (text[i] === '{' && text[i + 1] === '{') {
+                        braceDepth++;
+                        i++;
+                        continue;
+                    }
+                    if (text[i] === '}' && text[i + 1] === '}') {
+                        braceDepth--;
+                        i++;
+                        if (braceDepth === 0) {
+                            endIndex = i + 1; // inclusive index of second brace
+                            break;
+                        }
+                        continue;
+                    }
+                }
+
+                if (endIndex !== -1) {
+                    const fullBlock = text.slice(start, endIndex + 1);
+                    try {
+                        const tmpl = this.parseTemplateObject(fullBlock);
+                        data.header = tmpl.args;
+                        data.headerName = 'Header-regions';
+                        // Remove the block from mainContent
+                        data.mainContent = text.slice(0, start) + text.slice(endIndex + 1);
+                    } catch (e) {
+                        // If parsing fails, leave mainContent unchanged
+                        console.warn('Failed to extract Header-regions from mainContent', e);
+                    }
+                }
+            }
+        }
+
         let html = '';
 
         // 1. Header
         if (data.header) {
             const h = data.header;
-            html += `
+            // If header came from region-specific template, insert original header markup
+            if (data.headerName === 'Header-regions') {
+                const headerHtml = `
+            <header>
+                <div class="header-container">
+                    <div class="box-1x1">
+                        <img src="${h.icon || 'resource/placeholder.png'}" alt="Thumbnail">
+                    </div>
+                    <div class="header-info">
+                        <h1 class="page-title">${h.title || ''}</h1>
+                        <div class="subtitle">${h.id || ''}</div>
+                    </div>
+                </div>
+                <hr class="dividers">
+            </header>`;
+
+                // Insert header into the page above the main region content
+                const contentBody = document.querySelector('.content-body');
+                if (contentBody) {
+                    // Avoid inserting twice: check for existing header-container
+                    if (!contentBody.querySelector('.header-container')) {
+                        contentBody.insertAdjacentHTML('afterbegin', headerHtml);
+                    }
+                } else {
+                    // Fallback: append to target element
+                    html += headerHtml;
+                }
+
+                // Apply background to the main wrapper if provided
+                if (h.background) {
+                    const mw = document.querySelector('.main-wrapper');
+                    if (mw) {
+                        mw.style.background = `url('${h.background}') no-repeat center center fixed`;
+                        mw.style.backgroundSize = 'cover';
+                        mw.style.scrollBehavior = 'smooth';
+                    }
+                }
+            } else {
+                // Fallback to existing slugcat header for non-region headers
+                const h2 = data.header;
+                html += `
             <div class="slugcat-header">
-                <img src="${h.icon}" class="slugcat-icon">
+                <img src="${h2.icon}" class="slugcat-icon">
                 <div class="slugcat-title">
                     <span class="slugcat-the">THE</span><br>
-                    <span class="slugcat-name">${h.title}</span><br>
-                    <span class="slugcat-id">ID: ${h.id}</span>
+                    <span class="slugcat-name">${h2.title}</span><br>
+                    <span class="slugcat-id">ID: ${h2.id}</span>
                 </div>
             </div>`;
 
-            // Apply background if provided
-            if (h.background) {
-                // Since this runs after page load, we can set style directly on target or inject style
-                // Target is .main-wrapper
-                this.targetElement.style.background = `url('${h.background}') no-repeat center center fixed`;
-                this.targetElement.style.backgroundSize = 'cover';
-                this.targetElement.style.scrollBehavior = 'smooth';
+                if (h2.background) {
+                    this.targetElement.style.background = `url('${h2.background}') no-repeat center center fixed`;
+                    this.targetElement.style.backgroundSize = 'cover';
+                    this.targetElement.style.scrollBehavior = 'smooth';
+                }
             }
         }
 
-        html += '<hr class="divider">';
+        
 
         // 2. Game Bars
         if (data.gamebars) {
@@ -75,48 +154,114 @@ class WikiParser {
         html += '<div class="slugcat-main">';
 
         // 4. Sidebar (Infobox + Gallery)
-        html += '<div class="slugcat-details">';
+        // For region-specific infoboxes, render into an aside.region-details sibling to the region content.
+        if (data.infobox && data.infoboxName === 'Infobox-regions') {
+            const inf = data.infobox;
+            const infoboxHtml = [];
+            infoboxHtml.push(`<div class="region-name">${inf.Name || inf.name || ''}</div>`);
+            infoboxHtml.push('<div class="region-thumbnail-rect">');
+            if (inf.thumbnail) {
+                infoboxHtml.push(`<img src="${inf.thumbnail}" alt="Region Thumbnail">`);
+            } else {
+                infoboxHtml.push('<div class="no-image-placeholder">[No image.]</div>');
+            }
+            infoboxHtml.push('</div>');
 
-        if (data.infobox) {
-            for (const [key, val] of Object.entries(data.infobox)) {
-                if (!parseInt(key) && key !== '0') { // Skip numeric keys if any
-                    html += `
-                    <div class="detail-row">
-                        <span class="detail-label">${key}</span>
-                        <span class="detail-value">${val}</span>
-                    </div>`;
+            // Render other detail rows (preserve original markup with detail-row/detail-label/detail-value)
+            const skipKeys = new Set(['Name', 'name', 'thumbnail', 'thumbnail_url']);
+            let connectionRendered = false;
+            for (const [key, val] of Object.entries(inf)) {
+                if (skipKeys.has(key)) continue;
+                // Skip numeric positional args
+                if (!isNaN(parseInt(key))) continue;
+
+                // Special handling for Region Connections
+                if (key && key.toLowerCase().includes('connection')) {
+                    // Render header
+                    infoboxHtml.push(`<div class="connection-header">Region Connections</div>`);
+                    // Parse value: try JSON array or comma-separated
+                    let connections = [];
+                    try {
+                        const parsed = JSON.parse(val);
+                        if (Array.isArray(parsed)) connections = parsed;
+                    } catch (e) {
+                        // Not JSON - try split by comma
+                        const raw = String(val).replace(/^[\[\]"]+|[\[\]"]+$/g, '');
+                        connections = raw.split(',').map(s => s.trim()).filter(Boolean);
+                    }
+
+                    // Render each connection
+                    for (const conn of connections) {
+                        const c = String(conn).replace(/^[\"\']+|[\"\']+$/g, '');
+                        const parts = c.split(/->|→/).map(p => p.trim());
+                        if (parts.length === 2) {
+                            infoboxHtml.push(`
+                                <div class="connection-container">
+                                    <img src="resource/karma_5.png" alt="Karma" class="karma-icon-mini">
+                                    <span class="connection-text">${parts[0]}</span>
+                                    <span class="connection-arrow">→</span>
+                                    <span class="connection-text">${parts[1]}</span>
+                                </div>`);
+                        } else {
+                            infoboxHtml.push(`
+                                <div class="connection-container">
+                                    <span class="connection-text">${c}</span>
+                                </div>`);
+                        }
+                    }
+                    connectionRendered = true;
+                    continue;
+                }
+
+                infoboxHtml.push(`<div class="detail-row"><div class="detail-label">${key}</div><div class="detail-value">${val}</div></div>`);
+            }
+
+            // Insert into DOM: find closest .region-main and put/update an aside.region-details inside it
+            const regionMain = this.targetElement.closest('.region-main');
+            if (regionMain) {
+                let aside = regionMain.querySelector('.region-details');
+                if (!aside) {
+                    aside = document.createElement('aside');
+                    aside.className = 'region-details';
+                    regionMain.appendChild(aside);
+                }
+                aside.innerHTML = infoboxHtml.join('\n');
+            } else {
+                // Fallback: render into the left sidebar area inside target
+                html += '<div class="slugcat-details">';
+                for (const [key, val] of Object.entries(data.infobox)) {
+                    if (!parseInt(key) && key !== '0') {
+                        html += `\n                    <div class="detail-row">\n                        <span class="detail-label">${key}</span>\n                        <span class="detail-value">${val}</span>\n                    </div>`;
+                    }
+                }
+                html += '</div>';
+            }
+        } else {
+            // Default behavior for non-region infobox or gallery rendering inside the wiki block
+            html += '<div class="slugcat-details">';
+            if (data.infobox) {
+                for (const [key, val] of Object.entries(data.infobox)) {
+                    if (!parseInt(key) && key !== '0') {
+                        html += `\n                    <div class="detail-row">\n                        <span class="detail-label">${key}</span>\n                        <span class="detail-value">${val}</span>\n                    </div>`;
+                    }
                 }
             }
-        }
 
-        if (data.gallery) {
-            html += '<h2 class="gallery-title">GALLERY</h2><div class="gallery-grid">';
-            // Gallery args are pairs: path, caption
-            // The parser stores them as numbered args: 0, 1, 2...
-            // Wait, splitTemplateArgs gives strict array. 
-            // My logic below in parseStructure needs to handle this specific template logic.
-            // Actually, let's treat Gallery as a list of items.
-
-            // If we passed args raw to data.gallery, they are keys '0', '1', '2'...
-            // Wait, my generic parser handles named and indexed args.
-            // Let's iterate numerically.
-            let i = 0;
-            while (data.gallery[i]) {
-                const img = data.gallery[i];
-                const cap = data.gallery[i + 1] || '';
-                // Parse caption (supports templates like Spoiler)
-                const parsedCap = this.parseText(cap);
-                html += `
-                 <figure class="gallery-item">
-                    <img src="${img}" alt="Gallery Image" class="gallery-img">
-                    <figcaption class="gallery-caption">${parsedCap}</figcaption>
-                </figure>`;
-                i += 2;
+            if (data.gallery) {
+                html += '<h2 class="gallery-title">GALLERY</h2><div class="gallery-grid">';
+                let i = 0;
+                while (data.gallery[i]) {
+                    const img = data.gallery[i];
+                    const cap = data.gallery[i + 1] || '';
+                    const parsedCap = this.parseText(cap);
+                    html += `\n                 <figure class="gallery-item">\n                    <img src="${img}" alt="Gallery Image" class="gallery-img">\n                    <figcaption class="gallery-caption">${parsedCap}</figcaption>\n                </figure>`;
+                    i += 2;
+                }
+                html += '</div>';
             }
-            html += '</div>';
-        }
 
-        html += '</div>'; // End slugcat-details
+            html += '</div>'; // End slugcat-details
+        }
 
         // 5. Main Info Text
         html += '<div class="slugcat-info">';
@@ -172,11 +317,18 @@ class WikiParser {
                 // Check if this block is a Setup Template
                 if (fullBlock.trim().startsWith('{{') && fullBlock.trim().endsWith('}}')) {
                     const rawName = fullBlock.slice(2).split('|')[0].split('}')[0].trim();
-                    if (['Header', 'GameBars', 'Infobox', 'Gallery'].includes(rawName)) {
+
+                    if (['Header', 'Header-regions', 'GameBars', 'Infobox', 'Infobox-regions', 'Gallery'].includes(rawName)) {
                         const tmpl = this.parseTemplateObject(fullBlock);
-                        if (rawName === 'Header') data.header = tmpl.args;
+                        if (rawName === 'Header' || rawName === 'Header-regions') {
+                            data.header = tmpl.args;
+                            data.headerName = rawName;
+                        }
                         if (rawName === 'GameBars') data.gamebars = tmpl.args;
-                        if (rawName === 'Infobox') data.infobox = tmpl.args;
+                        if (rawName === 'Infobox' || rawName === 'Infobox-regions') {
+                            data.infobox = tmpl.args;
+                            data.infoboxName = rawName;
+                        }
                         if (rawName === 'Gallery') data.gallery = tmpl.args;
 
                         // Advance main loop to j (last line consumed)
@@ -211,13 +363,6 @@ class WikiParser {
             if (eqIndex !== -1) {
                 const key = part.substring(0, eqIndex).trim();
                 const val = part.substring(eqIndex + 1).trim();
-                // We do NOT parse inline here for setup templates, we need raw values for URLs etc.
-                // Except maybe for Infobox values which might have links/images.
-                // Let's parse inline for specific ones? Or always?
-                // URLs for images shouldn't be parsed as links.
-                // If I parseInline 'icons/Snowflake.png', it stays 'icons/Snowflake.png'.
-                // If I have '[[Link]]', it becomes HTML.
-                // It is safer to parseInline.
                 args[key] = this.parseInline(val);
             } else {
                 args[i - 1] = part.trim(); // Store positional args 0-indexed for Gallery
@@ -245,9 +390,6 @@ class WikiParser {
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i].trim();
             if (!line) continue;
-
-            // Ignore Setup templates if they accidentally leaked (though parseStructure should catch them)
-            // But reuse existing logic.
 
             // Multi-line Template Capture (Reuse)
             if (line.includes('{{') && !this.isBalanced(line)) {
@@ -277,7 +419,7 @@ class WikiParser {
             // Horizontal Rule
             if (line === '----') {
                 closeList();
-                output.push('<hr class="divider">');
+                output.push('<hr class="dividers">');
                 continue;
             }
 
@@ -309,7 +451,7 @@ class WikiParser {
             if (line.trim().startsWith('{{') && line.trim().endsWith('}}')) {
                 // Skip setup templates just in case
                 const rawName = line.slice(2).split('|')[0].split('}')[0].trim();
-                if (['Header', 'GameBars', 'Infobox', 'Gallery'].includes(rawName)) continue;
+                if (['Header', 'Header-regions', 'GameBars', 'Infobox', 'Infobox-regions', 'Gallery'].includes(rawName)) continue;
 
                 output.push(this.parseTemplate(line.trim()));
                 continue;
@@ -473,6 +615,8 @@ document.addEventListener('DOMContentLoaded', () => {
         new WikiParser(nightwalkerWikiSource, '.main-wrapper');
     } else if (typeof slugcatWikiSource !== 'undefined') {
         new WikiParser(slugcatWikiSource, '.main-wrapper');
+    } else if (typeof z1WikiSource !== 'undefined') {
+        new WikiParser(z1WikiSource, '.wiki-block');
     }
 });
 

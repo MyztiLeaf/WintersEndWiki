@@ -1,4 +1,8 @@
 /* Inner Wiki Content Styling */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: transparent;
     color: #e2e2e4;
@@ -21,9 +25,10 @@ body {
 }
 
 .content-body {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0;
+    padding-left: 50px;
     width: 100%;
     box-sizing: border-box;
     display: block !important;
@@ -45,11 +50,11 @@ body {
     margin-bottom: 30px;
 }
 
-.divider {
-    height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 20px 0;
+.dividers {
+    margin: 4px 0 12px 0;
     border: none;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Wiki-style blocks */
@@ -58,13 +63,297 @@ body {
     border: 1px solid #2a2a2b;
     padding: 20px;
     margin-top: 20px;
+    outline: white;
+    outline-color: white;
+    outline-style: auto;
+    outline-offset: 5px;
 }
 
 .wiki-block h2 {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    margin-top: 0;
+    font-size: 1.25rem;
+    margin: 15px 0 8px 0;
     color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.wiki-block p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #e2e2e4;
+}
+
+.wiki-block strong {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Creature Table Styles */
+.creature-table {
+    width: 100%;
+    margin: 15px 0;
+    border-collapse: collapse;
+}
+
+.creature-category-header {
+    background: rgba(40, 40, 45, 0.6);
+    border: 1px solid #3a3a3b;
+    padding: 8px 12px;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.creature-row {
+    border: 1px solid #2a2a2b;
+    background: rgba(20, 20, 22, 0.4);
+}
+
+.creature-row td {
+    padding: 10px 12px;
+        vertical-align: top;
+}
+
+.creature-label {
+    color: #a0a0a2;
+    font-size: 0.85rem;
+    width: 10%;
+    font-weight: 500;
+}
+
+.creature-items {
+    display:flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.creature-item {
+    display:flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    outline: 1px solid rgba(255,255,255,0.12);
+    outline-offset: 0px;
+    box-shadow: 0 0 6px rgba(255,255,255,0.04);
+    transition: box-shadow 0.12s ease, outline-color 0.12s ease, background 0.12s ease;
+}
+
+/* Creature icon sizing and subtle outline/glow */
+
+
+.creature-item:hover {
+    box-shadow: 0 0 10px rgba(255,255,255,0.12);
+    outline-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.01);
+}
+
+.creature-name {
+    color: #e2e2e4;
+    font-size: 0.9rem;
+}
+
+/* Region Map Image */
+.region-map-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border: 1px solid #3a3a3b;
+    border-radius: 4px;
+    image-rendering: pixelated;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.gallery-item {
+    position: relative;
+    border: 1px solid #3a3a3b;
+    border-radius: 4px;
+    background: rgba(20, 20, 22, 0.4);
+    overflow: hidden;
+}
+
+.gallery-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    color: #a0a0a2;
+    text-align: center;
+    background: rgba(15, 15, 17, 0.6);
+    border-top: 1px solid #2a2a2b;
+}
+
+/* Contents Box */
+.contents-box {
+    background: rgba(20, 20, 22, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 24px;
+    margin-top: 10px;
+    float: right;
+    margin-left: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-width: 240px;
+}
+
+.contents-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.contents-header h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.contents-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0;
+}
+
+.contents-list {
+    display: block;
+}
+
+.contents-list ol {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.contents-list li {
+    margin: 8px 0;
+}
+
+.contents-list a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contents-list a:hover {
+    color: #888;
+    text-decoration: underline;
+}
+
+.contents-list .sub-list {
+    margin: 4px 0 8px 1px;
+    list-style-type: none;
+    counter-reset: subsection;
+}
+
+.contents-list .sub-list li {
+    margin: 1px 0;
+    font-size: 0.95em;
+}
+
+.contents-list .sub-list li::before {
+    counter-increment: subsection;
+    content: "4." counter(subsection) " ";
+    color: #888;
+}
+
+/* DotPoint List */
+.DotPoint {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    color: #e2e2e4;
+    line-height: 1.6;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+/* Spoiler Box */
+.spoiler-box {
+    border: 2px solid #b00;
+    background: rgba(34, 34, 34, 0.486);
+    color: #fff;
+    padding: 16px;
+    margin: 24px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1500px;
+}
+
+.spoiler-warning-header {
+    font-weight: bold;
+    color: #ff4444;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.spoiler-description {
+    font-size: 1em;
+    margin-bottom: 12px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.spoiler-toggle {
+    background: #b00;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.spoiler-content {
+    margin-top: 12px;
+    background: #1111114b;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e2e2e4;
 }
 
 /* Scrollbar styling for iframe content */
@@ -115,4 +404,177 @@ body {
 
 .header-info .page-title {
     margin-top: 0;
+}
+
+/* Region Infobox/* Region Main Layout */
+.region-main {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+}
+
+.region-content {
+    flex: 1;
+    min-width: 0;
+    /* Allow flex item to shrink below content size */
+}
+
+.region-details {
+    max-width: 360px;
+    font-family: 'RainWorldFont', sans-serif;
+    padding: 20px;
+    background: rgba(20, 20, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    flex: 0 0 340px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    z-index: 10;
+}
+
+.region-name {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.region-thumbnail-rect {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.region-thumbnail-rect img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-placeholder {
+    color: #9a9a9a;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #9a9a9a;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.detail-value {
+    color: #ffffff;
+    font-size: 1rem;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+/* Center Connection Header */
+.connection-header {
+    text-align: center;
+    color: #9a9a9a;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 20px 0 10px 0;
+    text-align: center;
+}
+
+.connection-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(20, 20, 22, 0.4);
+    border: 1px solid #2a2a2b;
+    border-radius: 4px;
+}
+
+.karma-icon-mini {
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+}
+
+.connection-text {
+    color: #e2e2e4;
+    font-size: 0.95rem;
+}
+
+.connection-arrow {
+    color: #9a9a9a;
+    font-weight: bold;
+    margin: 0 4px;
+}
+
+.connection-dots {
+    color: #9a9a9a;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Infobox Category Headers */
+.infobox-header {
+    font-size: 1.8rem;
+    margin: 15px 0 2px 0;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    font-family: 'RainWorldFont', sans-serif;
+    text-transform: uppercase;
+
+}
+
+.infobox-divider {
+    margin: 4px 0 12px 0;
+    border: none;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .region-main {
+        flex-direction: column;
+    }
+
+    .region-details {
+        position: static;
+        width: 100%;
+        max-width: none;
+        flex: none;
+    }
 }
