@@ -213,5 +213,5 @@ In Z1, The player stands in the middle to activate the secret music note, Refere
 }}
 
 == Region Map ==
-<img src="resource/regions/Z1_map.png" alt="Conduit Reliquary Map" class="region-map-image">
+<img src="resource/regions/z1_map.png" alt="Conduit Reliquary Map" class="region-map-image">
 `;
