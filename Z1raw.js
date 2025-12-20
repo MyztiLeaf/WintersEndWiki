@@ -38,7 +38,7 @@ Conduit Reliquary (Z1)
 </ol>
 }}
 == Overview ==
-Conduit Reliquary (Z1) is the first region in the Winter's End expansion. This region features a mix of natural and industrial environments, split between the verdant NaturePath and the mechanical Conduit Reliquary power station. The region is home to diverse creatures and contains various points of interest for explorers.
+Conduit Reliquary (Z1) is an overrun with nature of green and rose that protects the cryobloom power tower. That locks any creature but thing slips out. It has two subregions: NaturePath and Conduit Reliquary.
 
 == Subregions ==
 
