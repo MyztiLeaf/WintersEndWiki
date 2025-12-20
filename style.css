@@ -1,0 +1,273 @@
+/* Global Page Theme */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'RainWorldFont', monospace;
+    background: #09090a;
+    color: #e2e2e4;
+    min-height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* Rain World Font */
+@font-face {
+    font-family: 'RainWorldFont';
+    src: url('fonts/rainworld.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rodondo';
+    src: url('fonts/Rodondo.otf') format('opentype');
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    background: #0f0f10;
+    border-right: 2px solid #2a2a2b;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-260px);
+}
+
+/* Sidebar Toggle Button */
+#sidebar-toggle {
+    position: fixed;
+    left: 260px;
+    top: 20px;
+    z-index: 100;
+    background: #1a1a1b;
+    border: 1px solid #2a2a2b;
+    color: #ffffff;
+    padding: 10px 6px;
+    cursor: pointer;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+#sidebar-toggle.collapsed {
+    left: 0;
+}
+
+#sidebar-toggle:hover {
+    background: #2a2a2b;
+}
+
+.toggle-icon {
+    font-size: 0.8rem;
+    display: inline-block;
+    transition: transform 0.4s;
+}
+
+.sidebar.collapsed+#sidebar-toggle .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 2px solid #2a2a2b;
+    padding-bottom: 15px;
+    font-family: 'Rodondo', sans-serif;
+}
+
+.category {
+    margin-bottom: 20px;
+}
+
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1b;
+    margin-bottom: 10px;
+}
+
+.cat-btn {
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: #a0a0a2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: none;
+    /* Removed as it's now on cat-header */
+    margin-bottom: 0;
+    cursor: default;
+}
+
+.header-map-link {
+    font-size: 0.7rem;
+    color: #3399ff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.2s;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+}
+
+.header-map-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 5px #3399ff;
+    border-color: rgba(51, 153, 255, 0.3);
+    background: rgba(51, 153, 255, 0.1);
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    border-radius: 4px;
+}
+
+.dropdown a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.home-link {
+    margin-top: auto;
+    padding: 15px;
+    text-align: center;
+    color: #707073;
+    text-decoration: none;
+    border-top: 1px solid #1a1a1b;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.home-link:hover {
+    color: #fff;
+}
+
+.icon,
+.iconBliz {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+/* Main Content Area */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    background: radial-gradient(circle at center, #121214 0%, #09090a 100%);
+    margin-left: 260px;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    padding: 20px 10px;
+    align-items: center;
+    /* Center content pages */
+}
+
+.sidebar.collapsed~.main-wrapper {
+    margin-left: 0;
+}
+
+.content-body,
+.slugcat-main,
+.slugcat-header,
+.header-bars,
+.divider {
+    width: 95%;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #707073;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.divider {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+    border: none;
+}
+
+/* Wiki-style blocks */
+.wiki-block {
+    background: rgba(20, 20, 22, 0.5);
+    border: 1px solid #2a2a2b;
+    padding: 20px;
+    margin-top: 20px;
+
+}
+
+.wiki-block h2 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-top: 0;
+    color: #ffffff;
+
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #09090a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3e3e40;
+}

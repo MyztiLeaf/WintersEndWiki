@@ -1,0 +1,118 @@
+/* Inner Wiki Content Styling */
+body {
+    background: transparent;
+    color: #e2e2e4;
+    font-family: 'RainWorldFont', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Rain World Font */
+@font-face {
+    font-family: 'RainWorldFont';
+    src: url('fonts/rainworld.woff') format('woff');
+}
+
+/* Rodondo Font */
+@font-face {
+    font-family: 'Rodondo';
+    src: url('fonts/Rodondo.otf') format('opentype');
+}
+
+.content-body {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: block !important;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-family: 'Rodondo', 'RainWorldFont', sans-serif;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #707073;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.divider {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+    border: none;
+}
+
+/* Wiki-style blocks */
+.wiki-block {
+    background: rgba(20, 20, 22, 0.5);
+    border: 1px solid #2a2a2b;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.wiki-block h2 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-top: 0;
+    color: #ffffff;
+}
+
+/* Scrollbar styling for iframe content */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3e3e40;
+}
+
+/* 1x1 Thumbnail Box */
+.box-1x1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.box-1x1 img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-info .page-title {
+    margin-top: 0;
+}
