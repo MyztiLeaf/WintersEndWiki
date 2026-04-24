@@ -1,4 +1,6 @@
-const z1WikiSource = `
+window.wikiPayload = {
+    target: '.wiki-block',
+    source: `
 {{Header-regions
 |icon=resource/placeholder.png
 |title=
@@ -48,135 +50,46 @@ Conduit Reliquary (Z1) is an overrun with nature of green and rose that protects
 === Conduit Reliquary ===
 '''Conduit Reliquary''' is a station power tower is where it holds cryobloom power system.
 
-
-
 == Creatures ==
-<table class="creature-table">
-    <tr>
-        <td colspan="2" class="creature-category-header">Critters</td>
-    </tr>
-    <tr class="creature-row">
-        <td class="creature-label">Critters</td>
-        <td class="creature-items">
-            <div class="creature-item">
-                <img src="icons/RWicons/fly.png" alt="Batfly" class="creature-icon">
-                <span class="creature-name">Batfly</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/vulturegrub.png" alt="Vulture Grub" class="creature-icon">
-                <span class="creature-name">Vulture Grub</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/jellyfish.png" alt="Jellyfish" class="creature-icon">
-                <span class="creature-name">Jellyfish</span>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="creature-category-header">Aggressive Creatures</td>
-    </tr>
-    <tr class="creature-row">
-        <td class="creature-label">Aggressive</td>
-        <td class="creature-items">
-            <div class="creature-item">
-                <img src="icons/RWicons/frostlizard.png" alt="Frost Lizard" class="creature-icon">
-                <span class="creature-name">Frost Lizard</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/WE_Blizzard_Lizard_icon.png" alt="Blizzard Lizard" class="creature-icon">
-                <span class="creature-name">Blizzard Lizard</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/mirosvulture.png" alt="Miros vulture" class="creature-icon">
-                <span class="creature-name">Miros vulture</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/kingvulture.png" alt="King vulture" class="creature-icon">
-                <span class="creature-name">King vulture</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/vulture.png" alt="Vulture" class="creature-icon">
-                <span class="creature-name">Vulture</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/glacelizard.png" alt="Glacier lizard" class="creature-icon">
-                <span class="creature-name">Glacier lizard</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/icelizard.png" alt="Ice lizard" class="creature-icon">
-                <span class="creature-name">Ice lizard</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/salamander.png" alt="Salamander" class="creature-icon">
-                <span class="creature-name">Salamander</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/bluelizard.png" alt="Blue lizard" class="creature-icon">
-                <span class="creature-name">Blue lizard</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/redcentipede.png" alt="Red centipede" class="creature-icon">
-                <span class="creature-name">Red centipede</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/frosticenti.png" alt="Frost centipede" class="creature-icon">
-                <span class="creature-name">Frost centipede</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/dropbug.png" alt="Drop bug" class="creature-icon">
-                <span class="creature-name">Drop bug</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/tentacleplant.png" alt="Tentacle plant" class="creature-icon">
-                <span class="creature-name">Tentacle plant</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/sealeech.png" alt="Sea leech" class="creature-icon">
-                <span class="creature-name">Sea leech</span>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="creature-category-header">Objects</td>
-    </tr>
-    <tr class="creature-row">
-        <td class="creature-label">Objects</td>
-        <td class="creature-items">
-            <div class="creature-item">
-                <img src="icons/RWicons/seedcob.png" alt="Popcorn Plant" class="creature-icon">
-                <span class="creature-name">Popcorn Plant</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/danglefruit.png" alt="Blue Fruit" class="creature-icon">
-                <span class="creature-name">Blue Fruit</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/snowberries.png" alt="Snow berries" class="creature-icon">
-                <span class="creature-name">Snow berries</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/glowweed.png" alt="Glow weed" class="creature-icon">
-                <span class="creature-name">Glow weed</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/gooieduck.png" alt="Gooied duck" class="creature-icon">
-                <span class="creature-name">Gooied duck</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/mushroom.png" alt="Mushroom" class="creature-icon">
-                <span class="creature-name">Mushroom</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/sporeplant.png" alt="Spore plant" class="creature-icon">
-                <span class="creature-name">Spore plant</span>
-            </div>
-            <div class="creature-item">
-                <img src="icons/RWicons/karmaflower.png" alt="Karma flower" class="creature-icon">
-                <span class="creature-name">Karma flower</span>
-            </div>
-        </td>
-    </tr>
-</table>
+{| class="creature-table"
+{{CreatureList
+|Title=Critters
+|Label=Critters
+|Batfly; icons/RWicons/fly.png
+|Vulture Grub; icons/RWicons/vulturegrub.png
+|Jellyfish; icons/RWicons/jellyfish.png
+}}
+{{CreatureList
+|Title=Aggressive Creatures
+|Label=Aggressive
+|Frost Lizard; icons/RWicons/frostlizard.png
+|Blizzard Lizard; icons/RWicons/weblizzardlizard.png
+|Miros vulture; icons/RWicons/mirosvulture.png
+|King vulture; icons/RWicons/kingvulture.png
+|Vulture; icons/RWicons/vulture.png
+|Glacier lizard; icons/RWicons/glacelizard.png
+|Ice lizard; icons/RWicons/icelizard.png
+|Salamander; icons/RWicons/salamander.png
+|Blue lizard; icons/RWicons/bluelizard.png
+|Red centipede; icons/RWicons/redcentipede.png
+|Frost centipede; icons/RWicons/frosticenti.png
+|Drop bug; icons/RWicons/dropbug.png
+|Tentacle plant; icons/RWicons/tentacleplant.png
+|Sea leech; icons/RWicons/sealeech.png
+}}
+{{CreatureList
+|Title=Objects
+|Label=Objects
+|Popcorn Plant; icons/RWicons/seedcob.png
+|Blue Fruit; icons/RWicons/danglefruit.png
+|Snow berries; icons/RWicons/snowberries.png
+|Glow weed; icons/RWicons/glowweed.png
+|Gooied duck; icons/RWicons/gooieduck.png
+|Mushroom; icons/RWicons/mushroom.png
+|Spore plant; icons/RWicons/sporeplant.png
+|Karma flower; icons/RWicons/karmaflower.png
+}}
+|}
 
 == Point of Interest ==
 '''Ledge Pearl''' is a pearl that can be found on the ledge of the power station.
@@ -214,4 +127,5 @@ In Z1, The player stands in the middle to activate the secret music note, Refere
 
 == Region Map ==
 <img src="resource/regions/z1_map.png" alt="Conduit Reliquary Map" class="region-map-image">
-`;
+yeah uh`
+};

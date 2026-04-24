@@ -137,21 +137,22 @@ body {
     display:flex;
     align-items: center;
     gap: 6px;
-    padding: 2px 6px;
+    padding: 4px 8px;
     border-radius: 6px;
-    outline: 1px solid rgba(255,255,255,0.12);
+    outline: 1px solid rgba(255,255,255,0.1);
     outline-offset: 0px;
-    box-shadow: 0 0 6px rgba(255,255,255,0.04);
-    transition: box-shadow 0.12s ease, outline-color 0.12s ease, background 0.12s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: box-shadow 0.2s ease, outline-color 0.2s ease, background 0.2s ease, transform 0.2s;
 }
 
 /* Creature icon sizing and subtle outline/glow */
 
 
 .creature-item:hover {
-    box-shadow: 0 0 10px rgba(255,255,255,0.12);
-    outline-color: rgba(255,255,255,0.28);
-    background: rgba(255,255,255,0.01);
+    box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+    outline-color: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-2px);
 }
 
 .creature-name {
@@ -180,10 +181,17 @@ body {
 
 .gallery-item {
     position: relative;
-    border: 1px solid #3a3a3b;
-    border-radius: 4px;
-    background: rgba(20, 20, 22, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(20, 20, 22, 0.5);
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
 }
 
 .gallery-image-container {
@@ -424,16 +432,23 @@ body {
 .region-details {
     max-width: 360px;
     font-family: 'RainWorldFont', sans-serif;
-    padding: 20px;
-    background: rgba(20, 20, 22, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 24px;
+    background: rgba(20, 20, 22, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     border-radius: 8px;
     flex: 0 0 340px;
     position: sticky;
     top: 20px;
     align-self: flex-start;
     z-index: 10;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.region-details:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .region-name {

@@ -1,4 +1,6 @@
-const snowflakeWikiSource = `
+window.wikiPayload = {
+    target: '.main-wrapper',
+    source: `
 {{Header
 |icon=icons/Snowflake.png
 |title=SNOWFLAKE
@@ -139,4 +141,5 @@ If standing near [[Beecat.html|Beecat]] / [[Nightwalker.html|Nightwalker]] (usin
 * The select screen art and Cryobloom Mist Cryobloom dialogue also change because of this
 
 </div>
-`;
+`
+};

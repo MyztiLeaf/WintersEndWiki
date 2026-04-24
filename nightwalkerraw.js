@@ -1,4 +1,6 @@
-const nightwalkerWikiSource = `
+window.wikiPayload = {
+    target: '.main-wrapper',
+    source: `
 {{Header
 |icon=icons/Nightwalker.png
 |title=NIGHTWALKER
@@ -99,4 +101,5 @@ This mod is seperated away from Nyctophobia mod for NightWalker Slugcat. And the
 If standing near Snowflake (using Jolly Coop or other means), Snowflake will purr and wag their tail
 * This is a reference to the creator's real life relationship with the original creator of Snowflake, MyztiLeaf
 * The select screen art and Cryobloom Mist Cryobloom dialogue also change because of this
-`;
+`
+};

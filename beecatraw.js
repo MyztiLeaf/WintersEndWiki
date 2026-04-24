@@ -1,4 +1,6 @@
-const beecatWikiSource = `
+window.wikiPayload = {
+    target: '.main-wrapper',
+    source: `
 {{Header
 |icon=icons/Beecat.png
 |title=Beecat
@@ -66,4 +68,5 @@ As Beecat gains more food pips, their tail gets noticeably plumper.
 == Tips ==
 
 == Trivia ==
-`;
+`
+};

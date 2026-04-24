@@ -1,15 +1,22 @@
 /* Contents Box Styles */
 .contents-box {
-    background: rgba(20, 20, 22, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
+    background: rgba(20, 20, 22, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     padding: 16px;
     margin-bottom: 24px;
     margin-top: 10px;
     float: right;
     margin-left: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     min-width: 240px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contents-box:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .contents-header {
@@ -407,16 +414,20 @@ body::before {
 }
 
 .slugcat-info {
-    padding: 20px 24px;
-    background: rgba(12, 12, 14, 0.85);
-    /* Much darker for better contrast */
+    padding: 24px 28px;
+    background: rgba(12, 12, 14, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 8px;
     font-size: 16px;
-    /* Slightly larger text */
-    line-height: 1.5;
-    /* Better line spacing */
+    line-height: 1.6;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow 0.3s;
+}
+
+.slugcat-info:hover {
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5);
 }
 
 .slugcat-info p {
@@ -507,10 +518,11 @@ body::before {
     max-width: 360px;
     font-family: 'RainWorldFont', sans-serif;
     padding: 20px;
-    background: rgba(20, 20, 22, 0.6);
-    /* Match user preference */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: rgba(20, 20, 22, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     border-radius: 8px;
     flex: 0 0 340px;
 
@@ -519,6 +531,11 @@ body::before {
     top: 20px;
     align-self: flex-start;
     z-index: 10;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.slugcat-details:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Each row of info */

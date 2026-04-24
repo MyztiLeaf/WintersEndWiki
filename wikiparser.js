@@ -122,7 +122,7 @@ class WikiParser {
             }
         }
 
-        
+
 
         // 2. Game Bars
         if (data.gamebars) {
@@ -137,17 +137,20 @@ class WikiParser {
             for (let i = 0; i < empty; i++) pipsHtml += `<img src="resource/food_pip_empty.png" alt="Empty pip" class="pip empty">\n`;
 
             html += `
+            <hr class="divider">
             <div class="game-bars header-bars">
                 <div class="karma-overlay">
                     <img src="${g.karma_bg}" alt="karma reinforcement" class="karma-bar">
                     <img src="${g.karma_icon}" alt="karma" class="karma-icon">
                 </div>
+                
                 <div class="food-display header-food">
                     <div class="food-pips" aria-label="Food pips">
                         ${pipsHtml}
                     </div>
                 </div>
-            </div>`;
+            </div>
+            `;
         }
 
         // 3. Main Content Wrapper
@@ -463,6 +466,14 @@ class WikiParser {
                 continue;
             }
 
+            // Table Start check
+            if (line.startsWith('{|')) {
+                const tableResult = this.parseTable(lines, i);
+                output.push(tableResult.html);
+                i = tableResult.nextIndex; // Update loop index to skip processed table lines
+                continue;
+            }
+
             output.push(`<p>${this.parseInline(line)}</p>`);
         }
 
@@ -566,7 +577,156 @@ class WikiParser {
             let descText = (args[1] || args.text || '').trim();
             return `<p class="description">${this.parseInline(descText)}</p>`;
         }
+
+        if (name === 'CreatureList') {
+            const title = args.Title || args.title || '';
+            const label = args.Label || args.label || title;
+
+            // Collect creature items (positional args or numeric keys)
+            let itemsHtml = '';
+            // Filter keys that are just numeric or positional
+            const itemKeys = Object.keys(args).filter(k => !isNaN(parseInt(k)));
+
+            // Sort keys to ensure order 0, 1, 2...
+            itemKeys.sort((a, b) => parseInt(a) - parseInt(b));
+
+            for (const key of itemKeys) {
+                const rawVal = args[key];
+                if (!rawVal) continue;
+                // Format: "Name; IconPath"
+                const parts = rawVal.split(';');
+                const cName = parts[0].trim();
+                const cIcon = (parts[1] || '').trim();
+
+                if (cName) {
+                    itemsHtml += `
+                    <div class="creature-item">
+                        <img src="${cIcon}" alt="${cName}" class="creature-icon">
+                        <span class="creature-name">${cName}</span>
+                    </div>`;
+                }
+            }
+
+            return `
+            <tr>
+                <td colspan="2" class="creature-category-header">${title}</td>
+            </tr>
+            <tr class="creature-row">
+                <td class="creature-label">${label}</td>
+                <td class="creature-items">
+                    ${itemsHtml}
+                </td>
+            </tr>`;
+        }
+
         return '';
+    }
+
+    parseTable(lines, startIndex) {
+        let i = startIndex;
+        let tableHtml = [];
+        let firstLine = lines[i].trim(); // "{| class='...'"
+
+        // Extract attributes
+        let attrs = firstLine.slice(2).trim();
+        tableHtml.push(`<table ${attrs}>`);
+
+        i++;
+        let inRow = false;
+
+        while (i < lines.length) {
+            let line = lines[i].trim();
+
+            if (line.startsWith('|}')) {
+                if (inRow) tableHtml.push('</tr>');
+                tableHtml.push('</table>');
+                return { html: tableHtml.join('\n'), nextIndex: i };
+            }
+
+            if (line.startsWith('|-')) {
+                if (inRow) tableHtml.push('</tr>');
+                // Row attributes?
+                let rowAttrs = line.slice(2).trim();
+                tableHtml.push(`<tr ${rowAttrs}>`);
+                inRow = true;
+                i++;
+                continue;
+            }
+
+            if (!inRow) {
+                // Implicit first row if content appears before |-
+                if (line.startsWith('!') || line.startsWith('|')) {
+                    tableHtml.push('<tr>');
+                    inRow = true;
+                }
+            }
+
+            // Template Handling inside Table
+            if (line.startsWith('{{')) {
+                // Capture full template if multi-line
+                let tempBuf = line;
+                let j = i + 1;
+                if (!this.isBalanced(tempBuf)) {
+                    while (j < lines.length) {
+                        tempBuf += '\n' + lines[j];
+                        if (this.isBalanced(tempBuf)) {
+                            break;
+                        }
+                        j++;
+                    }
+                }
+                // Parse it
+                const templRes = this.parseTemplate(tempBuf);
+                tableHtml.push(templRes);
+            }
+            // fall through to:
+            /*
+            if (line.startsWith('!')) ...
+            ...
+            i++;
+            */
+
+            if (line.startsWith('!')) {
+                // Header cells
+                // "! Header 1 !! Header 2"
+                let content = line.slice(1);
+                // Handle inline multiple headers with "!!"
+                let cells = content.split('!!');
+                for (let c of cells) {
+                    tableHtml.push(`<th>${this.parseInline(c.trim())}</th>`);
+                }
+            } else if (line.startsWith('|')) {
+                // Data cells
+                // "| Cell 1 || Cell 2"
+                // WARNING: Attributes can be like "| style='...' | Content"
+                let content = line.slice(1);
+                let cells = content.split('||');
+                for (let c of cells) {
+                    let cellContent = c.trim();
+                    // Check for single pipe for attributes vs content
+                    // But splitting by || might have already separated them if they use that syntax elsewhere?
+                    // Standard mediawiki: | attr | content || ...
+                    // Converting this simply for now:
+
+                    if (cellContent.includes('|')) {
+                        // Potential attributes: "style='color:red' | Text"
+                        let firstPipe = cellContent.indexOf('|');
+                        let cellAttr = cellContent.substring(0, firstPipe).trim();
+                        let cellText = cellContent.substring(firstPipe + 1).trim();
+                        tableHtml.push(`<td ${cellAttr}>${this.parseInline(cellText)}</td>`);
+                    } else {
+                        tableHtml.push(`<td>${this.parseInline(cellContent)}</td>`);
+                    }
+                }
+            }
+
+            i++;
+        }
+
+        // End of file closure
+        if (inRow) tableHtml.push('</tr>');
+        tableHtml.push('</table>');
+        return { html: tableHtml.join('\n'), nextIndex: i };
     }
 
     splitTemplateArgs(content) {
@@ -607,16 +767,8 @@ class WikiParser {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof snowflakeWikiSource !== 'undefined') {
-        new WikiParser(snowflakeWikiSource, '.main-wrapper');
-    } else if (typeof beecatWikiSource !== 'undefined') {
-        new WikiParser(beecatWikiSource, '.main-wrapper');
-    } else if (typeof nightwalkerWikiSource !== 'undefined') {
-        new WikiParser(nightwalkerWikiSource, '.main-wrapper');
-    } else if (typeof slugcatWikiSource !== 'undefined') {
-        new WikiParser(slugcatWikiSource, '.main-wrapper');
-    } else if (typeof z1WikiSource !== 'undefined') {
-        new WikiParser(z1WikiSource, '.wiki-block');
+    if (window.wikiPayload) {
+        new WikiParser(window.wikiPayload.source, window.wikiPayload.target);
     }
 });
 

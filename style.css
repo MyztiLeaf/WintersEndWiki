@@ -14,18 +14,22 @@ body {
 @font-face {
     font-family: 'RainWorldFont';
     src: url('fonts/rainworld.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Rodondo';
     src: url('fonts/Rodondo.otf') format('opentype');
+    font-display: swap;
 }
 
 /* Sidebar Styling */
 .sidebar {
     width: 260px;
-    background: #0f0f10;
-    border-right: 2px solid #2a2a2b;
+    background: rgba(15, 15, 16, 0.85); /* Semi-transparent for glassmorphism */
+    backdrop-filter: blur(10px); /* Glassmorphism blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-right: 1px solid rgba(255, 255, 255, 0.08); /* Refined subtle border */
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -240,11 +244,19 @@ body {
 
 /* Wiki-style blocks */
 .wiki-block {
-    background: rgba(20, 20, 22, 0.5);
-    border: 1px solid #2a2a2b;
-    padding: 20px;
+    background: rgba(20, 20, 22, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px; /* Softer rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Depth */
+    padding: 24px; /* Slightly more padding */
     margin-top: 20px;
+    transition: transform 0.2s, box-shadow 0.2s; /* Subtle hover effect */
+}
 
+.wiki-block:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .wiki-block h2 {
